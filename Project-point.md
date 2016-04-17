@@ -1,5 +1,5 @@
 ### project
-#### servicexx-trackerxx
+#### servicexx-trac--kerxx
 1. jersey （org.glassfish.jersey）<https://jersey.java.net/>
 2. mongodb
 3. LinkedBlockingQueue Logger  threadPoolExecutor
@@ -15,11 +15,11 @@ Servlet规范中所引入的filter令人心动不已，因为它引入了一个�
 6. 重写log4j appender
 7. 分表,数据迁移过程中保持接口兼容使用
 
-#### cxonfig-api
+#### cxonfi--g-api
 1. spring拦截器和注解实现Controller拦截做校验等操作
 2. URLConnection readTimeout and connectionTimeout
 
-#### mxbilexx-brand
+#### mxbilexx-br-an--d
 1. shiro 权限控制
 2. 分布式定时调度
 3. 实时刷新模块(面试 vip notes 1)(注册机制,定时刷新注解,)版本对比时使用==而不是使用equals,Integer类型对[-128,127]的数据有缓存,属于同一个对象
@@ -42,7 +42,7 @@ insert操作去主键索引,再取唯一索引,而update操作先取唯一索引
 18. 项目依赖,后台和api同时依赖一个service的纠结,service中使用annotation还是xml的选择问题
 19. promotion failed
 
-#### maxpi
+#### maxp--i
 1. 为了避免mc hotkey，每个key值在后台生成10份不同的key，存相同的值，这样就可以把需要的数据保存在多台mc，取得时候随机取一个，
    这样避免相同数据老是访问同一台机的hotkey问题
 2. 平常两百多万,高峰期间一千多万,响应5毫秒,最高25毫秒
@@ -61,7 +61,7 @@ ulimit 并没有哪个选项直接说是用来限制 socket 的数量的。但�
 通过 ulimit 改善系统性能:<http://www.ibm.com/developerworks/cn/linux/l-cn-ulimit/>
 
 
-#### mxobilexx-backend
+#### mxobilexx-back--end
 1. spring security 权限控制
 2. shelf nashorn
 3. WebApplicationInitializer in Spring MVC
@@ -70,11 +70,11 @@ ulimit 并没有哪个选项直接说是用来限制 socket 的数量的。但�
 #### mxobilexx-shelf
 1. digester 解析 xml文件
 
-#### configcontrol-center
+#### configcontrol-ce--nter
 1. zookeeper
 2. IOUtils
 
-#### mxonitor
+#### mxonito--r
 1. highchart
 2. spring session 报错,,no operations allow after connection close.(定时清数据的任务)
 因为被配置拦截成为事务,一个事务有太多的提交,提交事务时报错.
@@ -82,13 +82,13 @@ ulimit 并没有哪个选项直接说是用来限制 socket 的数量的。但�
 4. 各个接入应用服务器的xxx.log,使用flume收集,配置发送到kafka,Storm连接kafka 服务器消费数据并进行流式计算,再把结果查到存储层中(mysql,redis,hbase,hdfs)
 5. 规则引擎drools
 
-#### erxlanxgshxen
+#### erxlanx--gshxen
 + flume 安装再mapi各个服务器,收集日志 ,发送到kafka
 + kafka消息队列
 + storm 流式计算,消费kafka 的消息,并存储到mongodb
 + mongodb 数据存储
 
-#### drxagoxnfy 日志系统
+#### drxagoxn--fy 日志系统
 + logstash 安装在各个应用服务器如mapi ,与flume功能类似,用于收集日志数据,并发送到redis
 + redis 之所以发送到redis,是因为收集到的日志要做日志处理,logstash是可以做的,但是在应用服务器做会占用机器的系统资源
 + 部署redis机器上的logstash消费redis上的数据,并作处理,然后发送到kafka
@@ -106,7 +106,7 @@ logstash可以按照规则收集,所以可以用来收集应用日志,如tomcat�
 (考虑使用jmx做测试环境的后门,不用提供接口做测试,在测试环境中开启)
 3. tcpdump收集请求数据,转换格式,存文件,把数据导入到hbase,再提供接口sdk给moco server调用,使用jMeter对moco server进行压测
 
-#### cxommon-cxomponent
+#### cxommon-cxompon----ent
 1. http-client
 2. http-client-async
 3. AuthxFilterx
@@ -139,7 +139,7 @@ shell , expect
 + 数据展示
 + 安全隔离
 
-#### vexnus
+#### vexnu--s
 spring mvc ＋ thrift ＋ netty＋zookeeper
 
 #### nginx和HAProxy
