@@ -1,0 +1,72 @@
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.tmatesoft.svnkit:svnkit:1.8.10"
+    }
+}
+
+import org.tmatesoft.svn.core.wc2.*
+import org.tmatesoft.svn.core.wc.*
+import org.tmatesoft.svn.core.*
+
+task svnCommitFile() {
+    description = "Commits a single file to an SVN repository"
+    doLast {
+        DAVRepositoryFactory.setup()
+        SVNRepositoryFactoryImpl.setup()
+        FSRepositoryFactory.setup()
+
+        def stringRepositoryURL = "https://svn.tools.com/svn/deploy/"
+        def stringRepositoryUser = “kingson”
+        def charArrayRepsitoryPassword = “kingkxw”.toCharArray()
+        def workCopyDirectory = "/data/tmp/svn"
+        def newWarFilePath = "/data/git/project/target/root.war"
+
+        def clientManager
+
+        try {
+            def repositoryURL = SVNURL.parseURIDecoded(stringRepositoryURL)
+            def repository = SVNRepositoryFactory.create(repositoryURL)
+            def authManager = SVNWCUtil.createDefaultAuthenticationManager(stringRepositoryUser, charArrayRepsitoryPassword)
+            repository.setAuthenticationManager(authManager)
+            def clientOptions = SVNWCUtil.createDefaultOptions(true)
+            clientManager = SVNClientManager.newInstance(clientOptions, authManager)
+
+            def workCopyDir = new File(workCopyDirectory)
+            if (workCopyDir.exists()) {
+                workCopyDir.delete()
+            }
+            workCopyDir.mkdirs()
+
+            def updateClient = clientManager.getUpdateClient()
+            updateClient.setIgnoreExternals(false)
+            def version = updateClient.doCheckout(repositoryURL, workCopyDir, SVNRevision.HEAD, SVNRevision.HEAD, SVNDepth.INFINITY, false)
+            println(version)
+
+            def newWarFile = new File(newWarFilePath)
+            def newRepositoryFilePath = workCopyDirectory + "/" + newWarFile.getName()
+            Runtime.getRuntime().exec(String.format("cp %s %s", newWarFilePath, newRepositoryFilePath))
+            def newRepositoryFile = new File(newRepositoryFilePath)
+
+            def status = clientManager.getStatusClient().doStatus(newRepositoryFile, true)
+            if (status == SVNStatusType.STATUS_UNVERSIONED) {
+                def addInfo = clientManager.getWCClient().doAdd(newRepositoryFile, false, false, false, SVNDepth.INFINITY, false, false)
+                println(addInfo)
+            }
+            else {
+                def commitInfo = clientManager.getCommitClient().doCommit([newRepositoryFile] as File[], true, "上传自" + stringRepositoryUser, null, null, true, false, SVNDepth.INFINITY)
+                println(commitInfo)
+            }
+        } catch (e) {
+            println(e)
+        } finally {
+            if (clientManager != null) {
+                clientManager.dispose()
+            }
+        }
+    }
+}

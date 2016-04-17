@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<context:component-scan base-package="com.kxw" />
+	<context:component-scan base-package="com.kxw.validator" />
+	<mvc:annotation-driven validator="checkDigitValidator"/>
+	<mvc:annotation-driven />
+    <!--<context:component-scan base-package="com.kingson">
+	        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+-->
+	<task:annotation-driven />
+
+	<!-- base context -->
+	<!--<import resource="classpath:applicationContext-context.xml" />
+
+	&lt;!&ndash; 数据源配置 &ndash;&gt;
+	<import resource="classpath:datasources.xml" />
+	
+	&lt;!&ndash; Spring Redis 配置 &ndash;&gt;
+	<import resource="classpath:spring-jedis.xml" />
+
+	<import resource="classpath:abcs-common.xml" />
+
+	<import resource="classpath:services-cache.xml" />
+-->
+
+
+</beans>
