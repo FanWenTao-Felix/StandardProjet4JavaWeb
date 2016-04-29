@@ -188,7 +188,7 @@ java javac jps ,jstat ,jmap, jstack
 5. 把 Vim 变为十六进制编辑器 :%!xxd 恢复 :%!xxd -r
 6. 把光标下的文字置于屏幕中央 zz
 7. 把当前文件转化为网页 :%TOhtml
-8. 行尾 ！ ，行首 0
+8. 行尾 $ ，行首 0
 9. /word：向下寻找一个名称为word的字符串。
    ?word：向上寻找一个名称为word的字符串。
 10. u：复原前一个操作(undo)。 [Ctrl]+r：重做上一个操作。(redo)
