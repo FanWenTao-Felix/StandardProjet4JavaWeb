@@ -324,6 +324,10 @@ Comparator一般表示类在某种场合下的特殊分类，需要定制化排�
     （3）并发高、业务执行时间长，解决这种类型任务的关键不在于线程池而在于整体架构的设计，看看这些业务里面某些数据是否能做缓存是第一步，增加服务器是第二步，至于线程池的设置，设置参考（2）。
     最后，业务执行时间长的问题，也可能需要分析一下，看看能不能使用中间件对任务进行拆分和解耦。
     <http://www.cnblogs.com/xrq730/p/5060921.html>
+20. <code>
+        tag.setCreateTime(createTime);
+        tag.setModifyTime(createTime);//防止应用服务器的时间和数据库服务器的时间不一致
+    </code>
     
 
 ###cache
@@ -551,6 +555,7 @@ STDEV 基于样本估算标准偏差。标准偏差反映数值相对于平均�
   3. Apache Jmeter
   4. Tsung: 重型的（heavy-duty）、分布式的、多协议测试工具
      
+
 
 ### tomcat
 + Tomcat Connector运行模式<http://www.365mini.com/page/tomcat-connector-mode.htm>

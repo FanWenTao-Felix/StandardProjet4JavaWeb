@@ -5,7 +5,8 @@ standard structure for Java Web Application.  <br/>
 ####日志按业务划分
 ####README文件：注明系统间代码耦合的地方，具体类
 ####开发不仅仅只是应付需求，考虑代码扩展性和安全隐患等方面也是工作量，也很有必要
-####留意那些包路径或方法事务切面了
+#### 留意那些包路径或方法事务切面了
+#### 写可测试可监控的代码
 
 1. 添加依赖包需要用eclipse查看Resolved Dependencies,查看最终依赖有没有变（若依赖有问题，字节码是在加载使用到的时候才会报错，classload机制）
 2. debug log 需要加 `if(logger.isDebugEnabled())`,隔离不必要的操作，比如预编译之类的问题，slf4j也一样。
@@ -63,6 +64,7 @@ config-api project
 Ehcache是一个Java实现的开源分布式缓存框架，EhCache 可以有效地减轻数据库的负载，可以让数据保存在不同服务器的内存中，
 在需要数据的时候可以快速存取。同时EhCache 扩展非常简单，官方提供的Cache配置方式有好几种。
 你可以通过声明配置、在xml中配置、在程序里配置或者调用构造方法时传入不同的参数。
+EhCache 分布式缓存/缓存集群:<http://www.cnblogs.com/hoojo/archive/2012/07/19/2599534.html>
 
 
 ### 图数据库
