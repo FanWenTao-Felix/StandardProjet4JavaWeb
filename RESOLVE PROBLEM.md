@@ -373,6 +373,9 @@ Comparator一般表示类在某种场合下的特殊分类，需要定制化排�
 ###cache
 1. redis访问超时的情况下，不要回源设置，否则进一步增大redis的压力，引起redis incoming暴增。
 
+### memcached
++  Memcached内存管理的局限性导致尽量不能让KEY永远不过期:<http://blog.csdn.net/tenebaul/article/details/8141673>
++ memcached完全剖析–1. memcached的基础:<http://kb.cnblogs.com/page/42731/>
 
 
 ###serialization
