@@ -148,6 +148,46 @@ java javac jps ,jstat ,jmap, jstack
 <http://www.cnblogs.com/xrq730/p/5060921.html>
 
 
+---
+
+#### 日志查看
++ 正则表达式匹配统计
+
+cat *.log | grep ".*Append \(http:\/\/.*\?\) to .*"
+查看*.log中匹配正则表达式 .*Append (http:\/\/.*\?) to .*  的行, 为什么括号前要加斜杠呢? 这是shell中正则表达式比较特殊的地方, 括号还有其他个别符号前需要加斜杠.
+
++ 将匹配正则表达式的内容抽取出来, 排重, 再统计
+ sed 's/正则表达式/替换的内容/g', 我们在正则表达式里使用了分组(就是那个括号), 替换内容里用到了\1代表第一个分组, 如果是第二个则\2,以此类推
+`cat spring.log |grep "com.sishuok.Application" |sed 's/.*\(com.sishuok.Application\).*/\1/g'|uniq|wc -l`
+`cat spring.log |grep "org.springframework.web" |sed 's/.*\(org.springframework.web\).*/\1/g'`
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web.*]\).*/\1/g'`
+如何避开sed贪婪匹配
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*\).*/\1/g'`
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*]\).*/\1/g'`
+去掉末尾]
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*]\).*/\1/g'|sed 's/]$//'`
+
+
+awk 正则匹配提取
+
++ 截取一段时间内log日志
+“2015-05-04 09:25:55,606 后面跟日志内容 ”这样的
+目标是需要将05-04的09:25:55 和09:28:08 之间的日志截取出来：
+使用sed命令如下：
+`sed -n ‘/2015-05-04 09:25:55/,/2015-05-04 09:28:55/p’  logfile`
+这样可以精确地截取出来某个时间段的日志。
+
+使用正则表达式:
+`sed -n ‘/2010-11-17 09:[0-9][0-9]:[0-9][0-9]/,/2010-11-17 16:[0-9][0-9]:[0-9][0-9]/p’  logfile`
+如果没有问题的话，上面就能筛选出指定的时间段的日志。
+
+
+
+
+常用服务器日志分析命令大全
+<http://www.cnblogs.com/nixi8/p/4789817.html>
+
+
 
 
 ### svn
@@ -208,7 +248,7 @@ java javac jps ,jstat ,jmap, jstack
 <https://linux.cn/article-4669-1.html>
 
 ### maven
-1. `mvn dependency:tree -Dverbose -Dincludes=vutil`
+1. `mvn dependency:tree -Dverbose -Dincludes=vutil` ,`mvn dependency:tree -Dverbose -Dincludes=<groupId>:<artifactId>`
 2. `mvn versions:set -DnewVersion=2.6-SNAPSHOT`
 3. `maven dependency:sources` 下载项目下所有的源码
 4. `exec-maven-plugin` 执行指定程序main方法 或外部程序
