@@ -322,6 +322,19 @@ encodeURIComponent() 。它的作用是对 URL 中的参数进行编码，记住
    项目编码不一致，json转换会有问题
 2. System.getProperties().put("http.proxyHost","127.0.0.1");  <br/>
    System.getProperties().put("http.proxyPort","8888");
+3. httpclient 添加代理
+   ```
+           //创建HttpClientBuilder
+           HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+           //HttpClient
+           CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+
+           HttpHost proxy = new HttpHost("127.0.0.1", 8888, "http");
+           RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+
+           HttpGet httpGet = new HttpGet(url);
+           httpGet.setConfig(config);
+   ```
 3. 枚举转化  <br/>
    `abc.setAppType(AppType.valueOf(((String) Map.get("app_type")).toUpperCase()));`  <br/>
    `CodeConstants.LIST_SWITCH.ordinal();`
