@@ -21,8 +21,8 @@ public class LoginLogoutTest {
 	    org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();  
 	    SecurityUtils.setSecurityManager(securityManager);  
 	    //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）  
-	    Subject subject = SecurityUtils.getSubject();  
-	    UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");  
+	    Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
 	  
 	    try {  
 	        //4、登录，即身份验证  
@@ -34,7 +34,10 @@ public class LoginLogoutTest {
 	    //Assert.assertEquals(true, subject.isAuthenticated()); //断言用户已经登录
 	  
 	    //6、退出  
-	    subject.logout();  
+	    subject.logout();
+
+
+		String json="";
 	}  
 	
 	

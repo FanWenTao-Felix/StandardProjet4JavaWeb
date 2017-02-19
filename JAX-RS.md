@@ -65,3 +65,6 @@ Spring MVC 是以 Servlet 为http容器，并自己构建了一套Api，没有�
 你写的 jax-rs 程序，可以不经任何修改，和任何 jax-rs 框架配合使用。
 
 
+---
+REST 在 Java 中的使用
+<http://blog.jobbole.com/109031/>

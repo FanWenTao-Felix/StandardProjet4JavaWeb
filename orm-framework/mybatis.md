@@ -232,3 +232,10 @@ public class ChannelInfoEntity implements java.io.Serializable {
 ```
 关键：`<collection property="typeList" resultMap="channelTypeMap" />`
 
+---
+
+MyBatis 增强工具 pndao - 帮你自动写 SQL
+
+构建微服务：如何优雅的使用mybatis:<https://my.oschina.net/u/2928967/blog/782629>
+
+

@@ -146,6 +146,12 @@ java javac jps ,jstat ,jmap, jstack
     使用"top -H -p pid"+"jps pid"可以很容易地找到某条占用CPU高的线程的线程堆栈，从而定位占用CPU高的原因，一般是因为不当的代码操作导致了死循环。
     最后提一点，"top -H -p pid"打出来的LWP是十进制的，"jps pid"打出来的本地线程号是十六进制的，转换一下，就能定位到占用CPU高的线程的当前线程堆栈了。
 <http://www.cnblogs.com/xrq730/p/5060921.html>
+44.  Linux 中复制文件到多个目录中
+`echo /home/aaronkilik/test/ /home/aaronkilik/tmp | xargs -n 1 cp -v /home/aaronkilik/bin/sys_info.sh`
+    目录的路径（dir1、dir2、dir3...dirN）被管道作为输入到 xargs 命令中，含义是：
+    -n 1 - 告诉 xargs 命令每个命令行最多使用一个参数，并发送到 cp 命令中。
+    cp – 用于复制文件。
+    -v – 启用详细模式来显示更多复制细节。
 
 
 ---
@@ -440,9 +446,17 @@ Class 对象是在加载类时由 Java 虚拟机以及通过调用类加载器�
    `Ctrl+Alt+H` 查看调用链  <br/>
    `Ctrl+Alt+B` `Ctrl + Alt + left click`跳转到实现类  <br/>
    `crtl +shift +f` 全文查找  <br/>
-   `ctr + H` 查看类的继承结构     <br/>
-   `Ctrl+Alt+L` 格式化   
-   `Crtl+shift +Z` 反撤销
+   `ctrl + H` 查看类的继承结构     <br/>
+   `Ctrl+Alt+L` 格式化      <br/>
+   `Crtl+shift +Z` 反撤销   <br/>
+   `Crtl + E` 或 `Command + E` 打开最近访问的文件    <br/>
+   `Crtl + shift + E` 或 `Command+ shift + E` 打开最近编辑的文件    <br/>
+   查找文件夹 double shift ,然后输入/   <br/>
+   `Command + shift + ENTER` 快速补全分号   <br/>
+   `Command + shift + V` 粘贴板历史   <br/>
+   Language Injection : 把光标置于空字符串中,`Alter Enter`,选择JSON   <br/>
+   `Command + shift + A` ,rest client  <br/>
+   Step into: `shift F7` 选择要Debug哪一个方法  <br/>
 2. 涉及到jar包开发的，不要用社区版，debug很有问题。
 3. idea code surround with
 4. Intellij IDEA 自动生成 serialVersionUID
@@ -615,8 +629,7 @@ STDEV 基于样本估算标准偏差。标准偏差反映数值相对于平均�
 
 -----
 
-###
-configcenter
+### configcenter
 1. 打包resouce目录的插件
 2. IOutils.tostring(new URL) #网络IO,文件IO
 3. XMLUtils
