@@ -159,32 +159,48 @@ java javac jps ,jstat ,jmap, jstack
 #### 日志查看
 + 正则表达式匹配统计
 
-cat *.log | grep ".*Append \(http:\/\/.*\?\) to .*"
-查看*.log中匹配正则表达式 .*Append (http:\/\/.*\?) to .*  的行, 为什么括号前要加斜杠呢? 这是shell中正则表达式比较特殊的地方, 括号还有其他个别符号前需要加斜杠.
+`cat *.log | grep ".*Append \(http:\/\/.*\?\) to .*"`
+查看*.log中匹配正则表达式 `.*Append (http:\/\/.*\?) to .*`  的行, 为什么括号前要加斜杠呢? 这是shell中正则表达式比较特殊的地方, 括号还有其他个别符号前需要加斜杠.
 
-+ 将匹配正则表达式的内容抽取出来, 排重, 再统计
- sed 's/正则表达式/替换的内容/g', 我们在正则表达式里使用了分组(就是那个括号), 替换内容里用到了\1代表第一个分组, 如果是第二个则\2,以此类推
-`cat spring.log |grep "com.sishuok.Application" |sed 's/.*\(com.sishuok.Application\).*/\1/g'|uniq|wc -l`
-`cat spring.log |grep "org.springframework.web" |sed 's/.*\(org.springframework.web\).*/\1/g'`
-`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web.*]\).*/\1/g'`
-如何避开sed贪婪匹配
-`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*\).*/\1/g'`
-`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*]\).*/\1/g'`
-去掉末尾]
-`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*]\).*/\1/g'|sed 's/]$//'`
++ 将匹配正则表达式的内容抽取出来, 排重, 再统计 <br/>
+ sed 's/正则表达式/替换的内容/g', 我们在正则表达式里使用了分组(就是那个括号), 替换内容里用到了\1代表第一个分组, 如果是第二个则\2,以此类推   <br/>
+`cat spring.log |grep "com.sishuok.Application" |sed 's/.*\(com.sishuok.Application\).*/\1/g'|uniq|wc -l`  <br/>
+`cat spring.log |grep "org.springframework.web" |sed 's/.*\(org.springframework.web\).*/\1/g'`  <br/>
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web.*]\).*/\1/g'`<br/>
+如何避开sed贪婪匹配  <br/>
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*\).*/\1/g'`  <br/>
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*]\).*/\1/g'`  <br/>
+去掉末尾]  <br/>
+`cat spring.log |grep "org.springframework.web" |grep ']'|sed 's/.*\(org.springframework.web[^]]*]\).*/\1/g'|sed 's/]$//'`  <br/>
+
++ 筛选记录并按时间段分组，统计数目并排序
+`less kxw.log.2016-10-10 |grep '邮件发送成功' |awk '{print $2}' | cut -d ":" -f 1,2|sort | uniq -c | sort -k1,1nr | head -20`
+
++ 统计文件中出现次数最多的前10个单词
+`cat words.txt | sort | uniq -c | sort -k1,1nr | head -10`
+<pre>
+sort:  对单词进行排序
+uniq -c:  显示唯一的行，并在每行行首加上本行在文件中出现的次数
+sort -k1,1nr:  按照第一个字段，数值排序，且为逆序
+head -10:  取前10行数据
+</pre>
+
++ 按邮箱分组统计数目
+`less sendtask.mail.log.2016-10-10 |grep '邮件发送成功' |sed 's/.*邮箱=\(.*\)，标题.*/\1/g'`  <br/>
+`less sendtask.mail.log.2016-10-10 |grep '邮件发送成功' |sed 's/.*@\(.*\)，标题.*/\1/g'| tr "[:upper:]" "[:lower:]"|sort | uniq -c | sort -k1,1nr | head -20`  <br/>
 
 
-awk 正则匹配提取
++ awk 正则匹配提取
 
 + 截取一段时间内log日志
 “2015-05-04 09:25:55,606 后面跟日志内容 ”这样的
 目标是需要将05-04的09:25:55 和09:28:08 之间的日志截取出来：
-使用sed命令如下：
+使用sed命令如下：  <br/>
 `sed -n ‘/2015-05-04 09:25:55/,/2015-05-04 09:28:55/p’  logfile`
 这样可以精确地截取出来某个时间段的日志。
 
-使用正则表达式:
-`sed -n ‘/2010-11-17 09:[0-9][0-9]:[0-9][0-9]/,/2010-11-17 16:[0-9][0-9]:[0-9][0-9]/p’  logfile`
+使用正则表达式:  <br/>
+`sed -n ‘/2010-11-17 09:[0-9][0-9]:[0-9][0-9]/,/2010-11-17 16:[0-9][0-9]:[0-9][0-9]/p’  logfile`  <br/>
 如果没有问题的话，上面就能筛选出指定的时间段的日志。
 
 
@@ -312,6 +328,19 @@ encodeURIComponent() 。它的作用是对 URL 中的参数进行编码，记住
    项目编码不一致，json转换会有问题
 2. System.getProperties().put("http.proxyHost","127.0.0.1");  <br/>
    System.getProperties().put("http.proxyPort","8888");
+3. httpclient 添加代理
+   ```
+           //创建HttpClientBuilder
+           HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+           //HttpClient
+           CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+
+           HttpHost proxy = new HttpHost("127.0.0.1", 8888, "http");
+           RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+
+           HttpGet httpGet = new HttpGet(url);
+           httpGet.setConfig(config);
+   ```
 3. 枚举转化  <br/>
    `abc.setAppType(AppType.valueOf(((String) Map.get("app_type")).toUpperCase()));`  <br/>
    `CodeConstants.LIST_SWITCH.ordinal();`
