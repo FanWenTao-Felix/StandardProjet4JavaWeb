@@ -218,6 +218,7 @@ head -10:  取前10行数据
 + svn commit -m "xx"
 + svn update > /dev/null
 + svn info|grep 'Last Changed Rev'
++ 获取svn 的 URL 信息 : `$ svn info | grep URL` 或 `$ cat .svn/entries |grep http`
 
 
 ### Windows
@@ -340,6 +341,9 @@ encodeURIComponent() 。它的作用是对 URL 中的参数进行编码，记住
 
            HttpGet httpGet = new HttpGet(url);
            httpGet.setConfig(config);
+
+           //4.1.3
+           httpClient.getParams().setParameter(ConnRouteParams.DEFAULT_PROXY, new HttpHost("100.84.250.97",8888, null))
    ```
 3. 枚举转化  <br/>
    `abc.setAppType(AppType.valueOf(((String) Map.get("app_type")).toUpperCase()));`  <br/>
