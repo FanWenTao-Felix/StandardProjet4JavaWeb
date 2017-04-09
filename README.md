@@ -1,10 +1,11 @@
 # project standard
 standard structure for Java Web Application.  <br/>
 
-####制定编码规范
-####日志按业务划分
-####README文件：注明系统间代码耦合的地方，具体类
-####开发不仅仅只是应付需求，考虑代码扩展性和安全隐患等方面也是工作量，也很有必要
+#### 制定编码规范
+#### 业务要点记录，业务名，范围，对接人
+#### 日志按业务划分
+#### README文件：注明系统间代码耦合的地方，具体类
+#### 开发不仅仅只是应付需求，考虑代码扩展性和安全隐患等方面也是工作量，也很有必要
 #### 留意那些包路径或方法事务切面了
 #### 写可测试可监控的代码
 
@@ -61,10 +62,11 @@ config-api project
 
 
 ### Ehcache – Java分布式缓存框架
-Ehcache是一个Java实现的开源分布式缓存框架，EhCache 可以有效地减轻数据库的负载，可以让数据保存在不同服务器的内存中，
++ Ehcache是一个Java实现的开源分布式缓存框架，EhCache 可以有效地减轻数据库的负载，可以让数据保存在不同服务器的内存中，
 在需要数据的时候可以快速存取。同时EhCache 扩展非常简单，官方提供的Cache配置方式有好几种。
 你可以通过声明配置、在xml中配置、在程序里配置或者调用构造方法时传入不同的参数。
-EhCache 分布式缓存/缓存集群:<http://www.cnblogs.com/hoojo/archive/2012/07/19/2599534.html>
++ EhCache 分布式缓存/缓存集群:<http://www.cnblogs.com/hoojo/archive/2012/07/19/2599534.html>
++ ehcache实现页面整体缓存和页面局部缓存:<http://www.cnblogs.com/jianjianyang/p/4953157.html>
 
 
 ### 图数据库

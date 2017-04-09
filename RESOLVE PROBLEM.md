@@ -1,5 +1,9 @@
-<http://linux.about.com/od/commands/tp/11-Linux-Terminal-Commands-That-Will-Rock-Your-World.htm>
+
+
 ### shell
++ Linux Shell 文本处理工具集锦 : <http://www.cnblogs.com/me115/p/3427319.html>
++ <http://linux.about.com/od/commands/tp/11-Linux-Terminal-Commands-That-Will-Rock-Your-World.htm>
++ Awk使用案例总结（运维必会）<http://lizhenliang.blog.51cto.com/7876557/1764025>
 1. curl JSON格式输出：curl url/json , curl url/all.json
 2. curl http://127.0.0.1/shelf/test/page -H "Host:shelf.com"  <br>
    curl -I 'http://127.0.0.1/shelf/test/page'
@@ -644,6 +648,12 @@ STDEV 基于样本估算标准偏差。标准偏差反映数值相对于平均�
   2. Httperf
   3. Apache Jmeter
   4. Tsung: 重型的（heavy-duty）、分布式的、多协议测试工具
+  
+  
+5. https://www.oschina.net/p/webbench?fromerr=XAXSqqdd
+6. https://www.oschina.net/p/loadui?fromerr=MQgJtQSH
+  
++ 还在为测试发愁？10 个开源的压力/负载测试工具:<http://mp.weixin.qq.com/s/EI3PO5x_FKgWROMNfEy14A>  
      
 
 

@@ -412,3 +412,19 @@ public class HelloWorld {
 
 
 ---
+
+RESTEasy的性能要好于 Jersey,无论哪种嵌入式JEE容器。
+
+Jersey+Grizzly2和Jersey+Jetty, dropwizard性能差别不大
+
+dropwizard底层实际是Jersey+Jetty,性能结果也和Jersey+Jetty一样
+
+RESTEasy+netty (netty3)的结果并没有优于RESTEasy+undertow.这出乎我的意料，可能CPU和Memory占用上会好一些
+
+RESTEasy+netty4的性能远远低于RESTEasy+netty3，这出乎我的意料。或许因为Netty线程池的改变。
+
+纯netty的性能远远高于其它框架，一方面是由于没有http router的逻辑，另一方面也显示了Netty框架的优秀。如果不是实现很复杂的路由和很多的Service,不妨使用纯Netty实现高性能。
+
+Spring Boot太厚重了，使用Spring MVC的语法，性能只有Jersey的一半。
+
+Vert.x底层使用Netty,可以使用Java 8 Lambda语法，也提供了其它语言的支持，但是性能看起来不是太好，而且随着并发量增大吞吐率也随之下降。先前的vert.x测试有问题,只用到了单核，谢谢@Stream网友的提醒，我在代码中增加了vertx-verticles模块，支持多核(java -jar vertx-verticles-1.0-SNAPSHOT.jar -instances 20)。 Vert.x性能也不错。@heng
