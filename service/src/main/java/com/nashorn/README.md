@@ -1,0 +1,2 @@
+Nashorn引擎：jjs
+jjs是一个基于标准Nashorn引擎的命令行工具，可以接受js源码并执行。
