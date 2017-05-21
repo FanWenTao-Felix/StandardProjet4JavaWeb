@@ -4,6 +4,7 @@
 + Linux Shell 文本处理工具集锦 : <http://www.cnblogs.com/me115/p/3427319.html>
 + <http://linux.about.com/od/commands/tp/11-Linux-Terminal-Commands-That-Will-Rock-Your-World.htm>
 + Awk使用案例总结（运维必会）<http://lizhenliang.blog.51cto.com/7876557/1764025>
++ 试试Linux下的ip命令，ifconfig已经过时了:<https://linux.cn/article-3144-1.html>
 1. curl JSON格式输出：curl url/json , curl url/all.json
 2. curl http://127.0.0.1/shelf/test/page -H "Host:shelf.com"  <br>
    curl -I 'http://127.0.0.1/shelf/test/page'
