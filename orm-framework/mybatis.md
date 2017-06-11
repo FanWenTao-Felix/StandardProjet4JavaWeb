@@ -234,8 +234,8 @@ public class ChannelInfoEntity implements java.io.Serializable {
 
 ---
 
-MyBatis 增强工具 pndao - 帮你自动写 SQL
++ MyBatis 增强工具 pndao - 帮你自动写 SQL
 
-构建微服务：如何优雅的使用mybatis:<https://my.oschina.net/u/2928967/blog/782629>
++ 构建微服务：如何优雅的使用mybatis:<https://my.oschina.net/u/2928967/blog/782629>
 
-
++ MyBatis 动态 SQL 底层原理分析:<https://mp.weixin.qq.com/s/BLY1HZUtmYA_w1_MZfcYRQ>
