@@ -157,7 +157,12 @@ java javac jps ,jstat ,jmap, jstack
     -n 1 - 告诉 xargs 命令每个命令行最多使用一个参数，并发送到 cp 命令中。
     cp – 用于复制文件。
     -v – 启用详细模式来显示更多复制细节。
-
+45. 将输出内容以表格的形式显示出来: `mount | column -t`
+    如果想要的分隔符是别的什么符号，比如说冒号 `cat /etc/passwd | column -t -s:`
+46. 创建具有指定大小的文件 : 使用 dd 命令来创建出具有指定大小的文件：`dd if=/dev/zero of=out.txt bs=1M count=10`。
+这样就会创建出一个 10 MB 的文件，填充零作为内容
+47. xargs, 使用 {} 并结合 -i 参数 : `ls /etc/*.conf | xargs -i cp {} /home/kxw`
+       
 
 ---
 

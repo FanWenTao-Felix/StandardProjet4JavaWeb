@@ -13,5 +13,6 @@ public class HystrixMain {
         //Hystrix命令也可以用queue()方法异步（asynchronously）执行。
         java.util.concurrent.Future future = new HelloWorldCommand().queue();
         String s = (String) future.get();
+        System.out.println(s);
     }
 }

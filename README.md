@@ -2,6 +2,8 @@
 standard structure for Java Web Application.  <br/>
 
 #### 制定编码规范
++ 错误码定义：BusinessException, RequestException, ValidationException
+
 #### 业务要点记录，业务名，范围，对接人
 #### 日志按业务划分
 #### README文件：注明系统间代码耦合的地方，具体类

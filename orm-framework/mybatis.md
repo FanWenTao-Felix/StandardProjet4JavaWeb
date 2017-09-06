@@ -234,8 +234,56 @@ public class ChannelInfoEntity implements java.io.Serializable {
 
 ---
 
+1. 
+```
+<if test="available != null">
+            and available = #{available,jdbcType=BIT}
+```
+把true自动转化为1
+
+2. 
+sql where 1=1和 0=1 的作用
+where 1=1; 这个条件始终为True，在不定数量查询条件情况下，1=1可以很方便的规范语句。
+```
+<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.vip.mlisting.system.entity.Resource">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_resource
+        where 1=1
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="name != null">
+            and name = #{name,jdbcType=VARCHAR}
+        </if>
+```
+3. 
+```
+<if test="name != null" >
+            and name like  concat('%',#{name},'%')
+ </if>
+```
+
+4. 
+```
+<if test="startTime!=null and startTime>0">  
+          <![CDATA[
+           and case  when t1.mobile_show_from=0
+           then t2.sell_time_from >= #{startTime} 
+           else  t1.mobile_show_from >= #{startTime} end 
+          ]]>
+</if>
+```
+
+
+---
+
 + MyBatis 增强工具 pndao - 帮你自动写 SQL
 
 + 构建微服务：如何优雅的使用mybatis:<https://my.oschina.net/u/2928967/blog/782629>
 
 + MyBatis 动态 SQL 底层原理分析:<https://mp.weixin.qq.com/s/BLY1HZUtmYA_w1_MZfcYRQ>
+
++ Mybatis-Plus —— Mybatis 增强工具包:<https://mp.weixin.qq.com/s/EHLsg4PVrNPzBl-RiIEyww>
+
++ spring,mybatis事务管理配置与@Transactional注解使用:<http://www.cnblogs.com/xusir/p/3650522.html>
