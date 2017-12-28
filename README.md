@@ -36,68 +36,12 @@ config-api project
 14. Controller只能写一些不能复用的代码。
 15.
 
-***
-
-## cache
-1. 缓存为空就去DB取是不合理的，应该是缓存为空，且请求的key合法（参数在可选的范围内），才去数据库中拿，否则数据库会受到攻击！！！
-2. 从数据库一次性拿出所有数据再分类(维度，即不同key)放在缓存中，减少数据库访问次数
-3. select * from dept, emp where dept.deptno=emp.deptno; [简单处理方式]  <br/>
-   select * from dept left join emp on dept.deptno=emp.deptno;  [左外连接，更ok!]  
-4. 后台从数据库拿（需要经常用到的数据可以放到后台的本地缓存）
-   api从缓存（memcached）中拿
-   ----------
-   缓存为空就去DB取是不合理的
-   应该是缓存为空，且请求的key合法（参数在可选的范围内），才去数据库中拿，否则数据库会受到攻击！！！！！！
-
-
-   
-+ 本地缓存:guava,oscache
-+ 分布式缓存: memcached,redis,mongodb
-+ 数据库:mysql
-
-+ 5个强大的Java分布式缓存框架推荐:<http://www.codeceo.com/article/5-java-distribute-cache.html>
-
-### memcached
-+  Memcached内存管理的局限性导致尽量不能让KEY永远不过期:<http://blog.csdn.net/tenebaul/article/details/8141673>
-+ memcached完全剖析–1. memcached的基础:<http://kb.cnblogs.com/page/42731/>
-
-
-
-### Ehcache – Java分布式缓存框架
-+ Ehcache是一个Java实现的开源分布式缓存框架，EhCache 可以有效地减轻数据库的负载，可以让数据保存在不同服务器的内存中，
-在需要数据的时候可以快速存取。同时EhCache 扩展非常简单，官方提供的Cache配置方式有好几种。
-你可以通过声明配置、在xml中配置、在程序里配置或者调用构造方法时传入不同的参数。
-+ EhCache 分布式缓存/缓存集群:<http://www.cnblogs.com/hoojo/archive/2012/07/19/2599534.html>
-+ ehcache实现页面整体缓存和页面局部缓存:<http://www.cnblogs.com/jianjianyang/p/4953157.html>
-
-
-### 图数据库
-图数据库的扩展性，灵活性非常好，适合用于复杂关系管理和关系查询推理，社交关系应用就是一个可选的应用场景。
-neo4j 
-
-## logger
-+ log4j,slf4j,logback
-+ log4j、 slf4j 、logback:<http://blog.csdn.net/maohaiyan/article/details/7593996>
-+ Logback浅析: <http://www.cnblogs.com/yongze103/archive/2012/05/05/2484753.html>
-+ logback 配置详解:<http://blog.csdn.net/haidage/article/details/6794509>
-+ log4j2 使用详解:<http://blog.csdn.net/lrenjun/article/details/8178875>
-+ log4j PropertyConfigurator,logger.getRootLogger.set()
-+ log4j2.0:<http://blog.csdn.net/xmtblog/article/details/38982473>
-
-
-## Tomcat
-+ 提升tomcat服务器性能的经验<http://my.oschina.net/u/1995545/blog/360316>
-+ 对tomcat来说，每一个进来的请求(request)都需要一个线程，直到该请求结束。如果同时进来的请求多于当前可用的请求处理线程数，
-额外的线程就会被创建，直到到达配置的最大线程数(maxThreads属性值)。如果仍就同时接收到更多请求，
-这些来不及处理的请求就会在Connector创建的Server Socket中堆积起来，直到到达最大的配置值(acceptCount属性值)。
-至此，任何再来的请求将会收到connection refused错误，直到有可用的资源来处理它们。
-然而，不管是可立即处理请求还是需要放入等待区，都需要tomcat先接受该请求(即接受client的连接请求，建立socket channel)，
-那么tomcat同时可建立的连接数(maxConnections属性值)也会影响可同时处理的请求数。
-<http://www.cnblogs.com/tyb1222/p/4583983.html>
-
+### wiki
+1. 记录接口是否废弃,调用方等信息
 
 
 ***
+
 
 1. log4j.jsp
 2. version.jsp  jsp中写java代码读取文件
@@ -106,8 +50,6 @@ neo4j
 5. 在页面中读取文件（1）.采用js（读本地文件）（2）.采用jsp（写java代码）
 
 ---
-
-#### 
 
 
 SonarQube idea plugin
