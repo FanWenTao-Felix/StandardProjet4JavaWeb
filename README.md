@@ -1,5 +1,6 @@
 # project standard
 standard structure for Java Web Application.  <br/>
+Java web 项目标准，规范
 
 #### 制定编码规范
 + 错误码定义：BusinessException, RequestException, ValidationException
