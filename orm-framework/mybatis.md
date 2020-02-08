@@ -280,6 +280,8 @@ where 1=1; 这个条件始终为True，在不定数量查询条件情况下，1=
 
 + MyBatis 增强工具 pndao - 帮你自动写 SQL
 
++ 生成动态 SQL 语句的框架 MyBatis Dynamic SQL :<https://www.oschina.net/p/mybatis-dynamic-sql>
+
 + 构建微服务：如何优雅的使用mybatis:<https://my.oschina.net/u/2928967/blog/782629>
 
 + MyBatis 动态 SQL 底层原理分析:<https://mp.weixin.qq.com/s/BLY1HZUtmYA_w1_MZfcYRQ>
@@ -287,3 +289,18 @@ where 1=1; 这个条件始终为True，在不定数量查询条件情况下，1=
 + Mybatis-Plus —— Mybatis 增强工具包:<https://mp.weixin.qq.com/s/EHLsg4PVrNPzBl-RiIEyww>
 
 + spring,mybatis事务管理配置与@Transactional注解使用:<http://www.cnblogs.com/xusir/p/3650522.html>
+
+
++ 可以用标记代替 1=1。
+ <select id="queryBookInfo" parameterType="com.tjt.platform.entity.BookInfo" resultType="java.lang.Integer">
+  select count(*) from t_rule_BookInfo t
+  <where>
+  <if test="title !=null and title !='' ">
+  title = #{title}
+  </if>
+  <if test="author !=null and author !='' ">
+  AND author = #{author}
+  </if>
+  </where>
+  </select>
+  
