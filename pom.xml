@@ -25,6 +25,16 @@
             <id>central</id>
             <name>Central Repository</name>
             <url>http://central.maven.org/maven2/</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>central_aliyun</id>
+            <name>Aliyun Central Repository</name>
+            <!--<url>http://central.maven.org/maven2/</url>-->
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <!--<url>http://maven.oschina.net/content/groups/public/</url>-->
             <layout>default</layout>
             <snapshots>
